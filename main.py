@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import sqlite3
-#import pydeck as pdk
 from streamlit_folium import st_folium
 import folium
 
@@ -11,7 +10,6 @@ st.write("~By Amal Gregory")
 
 DB_FILE = "bmtc.db"
 
-# --- Key Network Metrics ---
 st.subheader("Quick Summary")
 col1, col2, col3 = st.columns(3)
 
@@ -69,8 +67,6 @@ show_top_stops = st.sidebar.toggle("Show Busiest Stops")
 
 st.sidebar.header("Route Finder")
 stop_search_term = st.sidebar.text_input("Enter a bus stop name")
-
-# In main.py, after the stop_search_term = st.sidebar.text_input(...) line
 
 st.sidebar.divider()
 
@@ -153,7 +149,7 @@ if show_top_stops:
     top_stops_df = pd.read_sql_query(top_stops_query, conn)
     conn.close()
 
-    #Set the stop_name as the index
+    #Set the stop name as the index
     top_stops_df.set_index('stop_name', inplace=True)
     
     st.bar_chart(top_stops_df, color="#FF4B4B")
